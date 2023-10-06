@@ -9,7 +9,6 @@ function getOrCreateCart() {
 
 function addToCart(name, price, description, image) {  
     const cart = getOrCreateCart();
-    // Create product object
     const product = {
         name: name,
         price: price,
@@ -19,16 +18,13 @@ function addToCart(name, price, description, image) {
         total: price
     };
 
-    // const product = JSON.parse(localStorage.getItem('product'));
     cart.push(product);
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-//show data from local storage
 function showCart() {
     const cart = getOrCreateCart();
     let html = '';
-    // id for remove button
     let index = 0;
 
     cart.forEach(product => {
@@ -67,7 +63,6 @@ function showCart() {
     document.querySelector('.cart-products').innerHTML = html;
 }
 
-//remove product from cart
 function removeProduct() {
     const cart = getOrCreateCart();
     cart.pop();
@@ -75,7 +70,6 @@ function removeProduct() {
     showCart();
 }
 
-//remove specific product from cart
 function removeSpecificProduct(index) {
     const cart = getOrCreateCart();
     cart.splice(index, 1);
@@ -83,7 +77,6 @@ function removeSpecificProduct(index) {
     showCart();
 }
 
-//increase quantity of specific product by index
 function increaseQuantity(index) {
     const cart = getOrCreateCart();
     cart[index].quantity++;
@@ -92,7 +85,6 @@ function increaseQuantity(index) {
     showCart();
 }
 
-//decrease quantity of specific product by index
 function decreaseQuantity(index) {
     const cart = getOrCreateCart();
     if (cart[index].quantity > 1) {
@@ -103,7 +95,6 @@ function decreaseQuantity(index) {
     }
 }
 
-//calculate total price of cart
 function calculateTotal() {
     const cart = getOrCreateCart();
     let total = 0;
@@ -113,7 +104,6 @@ function calculateTotal() {
     document.querySelector('.total-price').innerHTML = total;
 }
 
-//clear cart    
 function clearCart() {
     localStorage.removeItem('cart');
     showCart();
